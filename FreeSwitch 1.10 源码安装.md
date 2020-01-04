@@ -252,12 +252,12 @@ WantedBy=multi-user.target
 **2、编辑 `/etc/odbc.ini` 文件**
 
 ```ini
-[passmanage_dev]
+[pxxxxx_dev]
 Description=MySQL SIP Databases
 Driver=/usr/lib64/libmyodbc8w.so
 SERVER=172.18.219.215
 PORT=3307
-DATABASE=passmanage_dev
+DATABASE=pxxxxx_dev
 OPTION=67108864
 CHARSET=utf8mb4
 USER=root
@@ -269,7 +269,7 @@ Threading=0
 >
 > SOCKET=/data/mysql/3306/logs/mysql.sock
 
-测试是否能够连通数据库：`isqv -v passmanage_dev`
+测试是否能够连通数据库：`isqv -v pxxxxx_dev`
 
 **3、修改配置文件 **
 
@@ -308,7 +308,7 @@ local req_password   = params:getHeader("pass")
 local name = string.format("%q",req_user)
 local sql_normal = [[select sip_passwd from sip where sip_account=]] .. name .. [[ limit 1;]]
 
-local dbh = freeswitch.Dbh("passmanage_dev","root","xxx");
+local dbh = freeswitch.Dbh("pxxxxx_dev","root","xxx");
 freeswitch.consoleLog("NOTICE","start connect DB...\r\n");
 assert(dbh:connected());
 dbh:query(sql_normal ,function(row)
